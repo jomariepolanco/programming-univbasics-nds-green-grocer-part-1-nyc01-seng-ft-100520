@@ -21,16 +21,16 @@ def consolidate_cart(cart)
   
   consolidated_cart = []
   i = 0 
-  while i < cart.size 
-    count_cart = cart.each_with_object(Hash.new(0)) do |o, h| 
-      h[o] += 1
-    end
-    consolidated_cart = cart.uniq 
-    consolidated_cart[i][:count] = count_cart.values[i]
+  while i < cart.length 
+    new_cart_item = find_item_by_name_in_collection(cart[i][:item], consolidated_cart)
+      if new_cart_item != nil 
+        new_cart_item[:count] += 1 
+      else 
+        new_cart_item = {
+          
+        }
+      end 
     i += 1 
   end 
-  consolidated_cart
-  end 
-
 
   
